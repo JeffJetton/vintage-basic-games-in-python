@@ -20,8 +20,8 @@ The games here are truly "old school" and run as they would've originally: Right
    * Apart from tuples taking the place of BASIC arrays, Python data structures have been used sparingly.
    * Object-oriented concepts are not heavily used.
    * Variable names have been changed from single letters to descriptive names. I'm not a monster.
-   * Logical errors have been faithfully replicated! Discovering and fixing them is part of the fun, after all.
-* As a learning exercise, suggestions for modifications are found in the comments at the end of each code file. These are part of this project and did not appear in the original books.
+   * Unless they were especially horrible, logical errors have been faithfully replicated! Discovering and fixing them is part of the fun, after all.
+* Porting notes and suggestions for modifications are found in the comments at the end of each code file. These are part of this project and did not appear in the original books.
 
 Share and enjoy!
 
