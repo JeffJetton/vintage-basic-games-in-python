@@ -173,7 +173,11 @@ print("OK Hope you had fun\n")
 #   until a certain bankroll goal is attained.
 #
 #   See "porting notes" above about negative bet values.
-#   How would you fix this?
+#   In fact, other than checking to make sure the player
+#   has enough in the bankroll, there is no validation
+#   of bet input. Try entering a word instead of a
+#   number, for example. What happens? How would you
+#   fix these problems?
 #
 #   When the player "chickens out", show them what the
 #   next card would've been and point out whether they
