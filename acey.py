@@ -25,8 +25,12 @@
 #
 ########################################################
 
+
 import random
 
+# You may alter this statement if you want to start
+# with more or less than $100.
+DEFAULT_BANKROLL = 100
 
 # functions
 def dealCardNum():
@@ -39,7 +43,8 @@ def getCardName(n):
     return(cardNames[n])
 
 def displayBankroll(b):
-    print("You now have %s dollars\n"%b)
+    if bankroll > 0:
+        print("You now have %s dollars\n"%b)
     
 
 
@@ -54,65 +59,108 @@ print("on whether or not you feel the card will have")
 print("a value between the first two.")
 print("If you do not want to bet, input a 0")
 
-# Initialize bankroll. You may alter this statement
-# if you want to start with more or less than $100.
-bankroll = 100
 
-# Start the game by displaying the starting bankroll
-displayBankroll(bankroll)
+# Loop for series of multiple games
+keepPlaying = True
+while(keepPlaying):
+    
+    # Initialize bankroll at start of each game
+    bankroll = DEFAULT_BANKROLL
+    displayBankroll(bankroll)
 
-# Main game loop. Repeat until out of money.
-while bankroll > 0:
+    # Loop for a single round. Repeat until out of money.
+    while bankroll > 0:
 
-    # Deal out dealer cards
-    print("Here are your next two cards")
-    dealer1 = dealCardNum()
-    # If the cards match, we re-deal until they don't
-    dealer2 = dealer1
-    while dealer1 == dealer2:
-        dealer2 = dealCardNum()
-    # Organize the cards in order if they're not already
-    if (dealer1 >= dealer2):
-        (dealer1, dealer2) = (dealer2, dealer1)
-    # Show cards to the player (using name rather than number)
-    print(getCardName(dealer1))
-    print(getCardName(dealer2) + "\n")
+        # Deal out dealer cards
+        print("Here are your next two cards")
+        dealer1 = dealCardNum()
+        # If the cards match, we re-deal 2nd card until they don't
+        dealer2 = dealer1
+        while dealer1 == dealer2:
+            dealer2 = dealCardNum()
+        # Organize the cards in order if they're not already
+        if (dealer1 >= dealer2):
+            (dealer1, dealer2) = (dealer2, dealer1) # Ya gotta love Python!
+        # Show dealer cards to the player
+        # (use card name rather than internal number)
+        print(getCardName(dealer1))
+        print(getCardName(dealer2) + "\n")
 
-    # Get and handle player bet choice
-    betIsValid = False
-    while not betIsValid:
-        currBet = int(input("\nWhat is your bet? "))
-        if currBet == 0:
-            betIsValid = True
-            print("Chicken!!\n")
-        elif currBet > bankroll:
-            print("Sorry, my friend but you bet too much")
-            print("You have only %s dollars to bet"%bankroll)
-        else:
-            # Deal player card
-            betIsValid = True
-            player = dealCardNum()
-            print(getCardName(player) + "\n")
-            
-            # Did we win?
-            if player > dealer1 and player < dealer2:
-                print("You win!!!")
-                bankroll += currBet
+        # Get and handle player bet choice
+        betIsValid = False
+        while not betIsValid:
+            currBet = int(input("\nWhat is your bet? "))
+            if currBet == 0:
+                betIsValid = True
+                print("Chicken!!\n")
+            elif currBet > bankroll:
+                print("Sorry, my friend but you bet too much")
+                print("You have only %s dollars to bet"%bankroll)
             else:
-                print("Sorry, you lose")
-                bankroll -= currBet
+                # Deal player card
+                betIsValid = True
+                player = dealCardNum()
+                print(getCardName(player) + "\n")
+    
+                # Did we win?
+                if player > dealer1 and player < dealer2:
+                    print("You win!!!")
+                    bankroll += currBet
+                else:
+                    print("Sorry, you lose")
+                    bankroll -= currBet
 
-            # Update player on new bankroll level
-            displayBankroll(bankroll)
+                # Update player on new bankroll level
+                displayBankroll(bankroll)
             
-    # End of main game loop
+    # End of loop for a single round
 
-print("\n\nSorry, friend but you blew your wad")
-print("TRY AGAIN CODE GOES HERE")
-print("OK Hope you had fun")
-                    
+    print("\n\nSorry, friend but you blew your wad")
+    playerResponse = input("Try again (yes or no) ")
+    if playerResponse.lower() == "yes":
+        print()
+    else:
+        keepPlaying = False
+
+# End of multiple game loop
+
+print("OK Hope you had fun\n")
+
 
 ########################################################
+#
+# Porting notes:
+#
+#   The original BASIC version had a variable named N
+#   that was initialized to 100 and then never used.
+#   Maybe it did something in feature that was edited
+#   out of the final version used in the book?
+#
+#   The card value printing code was originally
+#   repeated three times: Once for the two dealer
+#   cards and again for the player card. This has
+#   been broken out into a single, reused function.
+#
+#   The original program simply generated random numbers
+#   for each card. It did not simulate a true card deck,
+#   where the dealing of a card eliminates it from the
+#   deck and reduces the chances of the same value
+#   being drawn. This "infinite deck" logic (or "deal,
+#   with replacement after") has NOT been changed.
+#
+#   Like the original program, we still allow entering
+#   negative bet values, which will earn the player
+#   money if they lose! :-)
+#
+#   The original program tracked cards as integers that
+#   directly matched their values. So a deuce was 2, etc.
+#   Here, cards are internally represented by integers
+#   between 0 and 12. A deuce is now stored as 0, and
+#   merely displayed to the player as "2". This does
+#   not affect the calculation of wins/losses, but it
+#   does make translating the number to text a bit
+#   more straightforward.
+#
 #
 # Ideas for Modifications
 #
@@ -124,10 +172,8 @@ print("OK Hope you had fun")
 #   Or have the game run for a set number of rounds or
 #   until a certain bankroll goal is attained.
 #
-#   Notice that the player can "bet" a negative amount,
-#   which will result in earning money if the bet loses
-#   and losing money if it wins! How would you fix this
-#   lack of input validation?
+#   See "porting notes" above about negative bet values.
+#   How would you fix this?
 #
 #   When the player "chickens out", show them what the
 #   next card would've been and point out whether they
@@ -145,40 +191,12 @@ print("OK Hope you had fun")
 #   single deck (or a user-selectable number of decks).
 #
 #   Implement a two-player mode where players take turns
-#   betting (or both bet on the same dealer cards).
+#   betting (or both bet on the same dealer cards and
+#   get their own player card dealt).
 #
 ########################################################
 
-########################################################
-# Porting notes:
-#
-#   The original BASIC version had a variable named N
-#   that was initialized to 100 and then never used.
-#   Maybe it was used in feature that was edited out of
-#   the final version used in the book? (Such as tracking
-#   a set number of rounds?)
-#
-#   The card value printing logic was originally
-#   repeated three times: Once for the two dealer
-#   cards and again for the player card. This has
-#   been broken out into a single, reused function.
-#
-#   The OP simply generated random numbers for each
-#   card. It did not simulate a true card deck, where
-#   the dealing of a card d eliminates it from the
-#   deck and reduces the chances of the same value
-#   being drawn. This "infinite" deck logic has
-#   been maintained.
-#
-#   The OP allowed negative bets, which would
-#   earn you money if you lost! Same here.
-#
-#   Card values are internally different from card name.
-#   Could the RNG in the OP produce out-of-bounds values?
-#   No validation on the input. Could be character, etc.
-#
-#
-########################################################
+
             
         
     
