@@ -54,172 +54,75 @@
 
 import random
 
-# You may alter this statement if you want to start
-# with more or less than $100.
-DEFAULT_BANKROLL = 100
-
-# functions
-def dealCardNum():
-    return random.randint(0, 12)
-
-def getCardName(n):
-    cardNames = (" 2", " 3", " 4", " 5", " 6", \
-                 " 7", " 8", " 9", " 10", "Jack", \
-                 "Queen", "King", "Ace")
-    return(cardNames[n])
-
-def displayBankroll(b):
-    if bankroll > 0:
-        print("You now have %s dollars\n"%b)
-    
-
+# Game contants
+MAX_YEARS = 10    # How many years should the game last?
+STARTING_BASE_POP = 95
+STARTING_INCOMING_POP = 5
+STARTING_ACRES = 1000
+STARTING_YIELD = 3
+STARTING_RAT_LOSS = 200
 
 # Display initial title and instructions
-print("\n               Hamurabit")
+print("\n               Hamurabi")
 print("Creative Computing  Morristown, New Jersey")
 print("\n\n\n")
 print("Try your hand at governing ancient Sumeria")
 print("for a ten-year term of office.\n")
 
+# Initialize game variables
+deathTotal = 0          # D1
+starvationPct = 0       # P1
+year = 1                # Z
+population = STARTING_BASE_POP          # P
+acres = STARTING_ACRES                  # A
+yieldPerAcre = STARTING_YIELD           # Y
+harvestYield = acres * yieldPerAcre     # H
+# Initial bushel store takes rat loss into account
+ratLoss = STARTING_RAT_LOSS             # E
+bushelStore = harvestYield - ratLoss    # S
+starved = 0                             # D
+incomingPop = STARTING_INCOMING_POP     # I
+impeached = False
 
 
-# Loop for series of multiple games
-keepPlaying = True
-while(keepPlaying):
+# Main game loop. Game runs until we've reached MAX_YEARS
+# or the player has been impeached.
+
+while year <= MAX_YEARS and not impeached:
     
-    # Initialize bankroll at start of each game
-    bankroll = DEFAULT_BANKROLL
-    displayBankroll(bankroll)
-
-    # Loop for a single round. Repeat until out of money.
-    while bankroll > 0:
-
-        # Deal out dealer cards
-        print("Here are your next two cards")
-        dealer1 = dealCardNum()
-        # If the cards match, we re-deal 2nd card until they don't
-        dealer2 = dealer1
-        while dealer1 == dealer2:
-            dealer2 = dealCardNum()
-        # Organize the cards in order if they're not already
-        if (dealer1 >= dealer2):
-            (dealer1, dealer2) = (dealer2, dealer1) # Ya gotta love Python!
-        # Show dealer cards to the player
-        # (use card name rather than internal number)
-        print(getCardName(dealer1))
-        print(getCardName(dealer2) + "\n")
-
-        # Get and handle player bet choice
-        betIsValid = False
-        while not betIsValid:
-            currBet = int(input("\nWhat is your bet? "))
-            if currBet == 0:
-                betIsValid = True
-                print("Chicken!!\n")
-            elif currBet > bankroll:
-                print("Sorry, my friend but you bet too much")
-                print("You have only %s dollars to bet"%bankroll)
-            else:
-                # Deal player card
-                betIsValid = True
-                player = dealCardNum()
-                print(getCardName(player) + "\n")
+    print("\n\n\nHamurabi: I beg to report to you,")
+    print("in year %s , %s people starved, %s came to the city,"
+          %(year, starved, incomingPop))
+    # Calculate current-year population
+    population += incomingPop
+    print("Population is now %s"%population)
+    print("The city now owns %s acres."%acres)
+    print("You harvested %s bushels per acre."%yieldPerAcre)
+    print("Rats ate %s bushels."%ratLoss)
+    print("You now have %s bushels in store.\n"%bushelStore)
     
-                # Did we win?
-                if player > dealer1 and player < dealer2:
-                    print("You win!!!")
-                    bankroll += currBet
-                else:
-                    print("Sorry, you lose")
-                    bankroll -= currBet
-
-                # Update player on new bankroll level
-                displayBankroll(bankroll)
-            
-    # End of loop for a single round
-
-    print("\n\nSorry, friend but you blew your wad")
-    playerResponse = input("Try again (yes or no) ")
-    if playerResponse.lower() == "yes":
-        print()
-    else:
-        keepPlaying = False
-
-# End of multiple game loop
-
-print("OK Hope you had fun\n")
-
+    
+    
+    
+    
+    impeached = True
+    
+    
+    
+  
+  
+  
 
 ########################################################
 #
 # Porting notes:
 #
-#   The original BASIC version had a variable named N
-#   that was initialized to 100 and then never used.
-#   Maybe it did something in feature that was edited
-#   out of the final version used in the book?
-#
-#   The card value printing code was originally
-#   repeated three times: Once for the two dealer
-#   cards and again for the player card. This has
-#   been broken out into a single, reused function.
-#
-#   The original program simply generated random numbers
-#   for each card. It did not simulate a true card deck,
-#   where the dealing of a card eliminates it from the
-#   deck and reduces the chances of the same value
-#   being drawn. This "infinite deck" logic (or "deal,
-#   with replacement after") has NOT been changed.
-#
-#   Like the original program, we still allow entering
-#   negative bet values, which will earn the player
-#   money if they lose! :-)
-#
-#   The original program tracked cards as integers that
-#   directly matched their values. So a deuce was 2, etc.
-#   Here, cards are internally represented by integers
-#   between 0 and 12. A deuce is now stored as 0, and
-#   merely displayed to the player as "2". This does
-#   not affect the calculation of wins/losses, but it
-#   does make translating the number to text a bit
-#   more straightforward.
+#   The origin
 #
 #
 # Ideas for Modifications
 #
-#   Give the user the ability to quit the game, perhaps
-#   by typing "quit" instead of making a bet. Provide a
-#   final assement based on how much of the original
-#   bankroll they have left.
-#
-#   Or have the game run for a set number of rounds or
-#   until a certain bankroll goal is attained.
-#
-#   See "porting notes" above about negative bet values.
-#   In fact, other than checking to make sure the player
-#   has enough in the bankroll, there is no validation
-#   of bet input. Try entering a word instead of a
-#   number, for example. What happens? How would you
-#   fix these problems?
-#
-#   When the player "chickens out", show them what the
-#   next card would've been and point out whether they
-#   made a good or bad decision.
-# 
-#   Instead of calling the player "chicken" every time
-#   they opt out of betting, how about random taunts?
-#
-#   In what situations are the odds of winning high
-#   enough to justify making a bet? Create a cheat mode
-#   where the program identifies these situations and
-#   lets the player know.
-#
-#   Change the card dealing to simulate deals from a
-#   single deck (or a user-selectable number of decks).
-#
-#   Implement a two-player mode where players take turns
-#   betting (or both bet on the same dealer cards and
-#   get their own player card dealt).
+#   
 #
 ########################################################
 

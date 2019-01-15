@@ -62,7 +62,7 @@ print("If you do not want to bet, input a 0")
 
 # Loop for series of multiple games
 keepPlaying = True
-while(keepPlaying):
+while keepPlaying:
     
     # Initialize bankroll at start of each game
     bankroll = DEFAULT_BANKROLL
