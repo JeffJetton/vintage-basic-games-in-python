@@ -6,23 +6,21 @@ This is an in-progress collection of simple, text-based Python games, ported fro
 
 These books influenced an entire generation of budding programmers back in the day, myself included. It is hoped that beginning Python programmers will derive the same benefits from playing, exploring, and (most importantly) *modifying* these games as we did with the original BASIC versions.
 
-The games here are truly "old school" and run as they would've originally: Right on on the command line (or in a Python IDE) using written output and typed-in input. This can actually be helpful in a way, since it lets the reader/programmer focus on the essentials of the game itself, without having to also learn about and deal with graphic libraries, etc. It's also a fun glimpse into the pre-graphics days of computer gaming.
+The games here are truly "old school" and run as they would've originally: Right on on the command line (or in a Python IDE) using written output and typed-in input. This can actually be helpful in a way, since it lets the reader/programmer focus on the essentials of the game itself, without having to worry about display routines and event handling. It's also a fun glimpse into the pre-graphics days of computer gaming.
 
 ### Porting Notes
-* The opening comments of each game are taken nearly verbatim from the original descriptions in the books. Text that pertained to specific lines of the BASIC program listing has been moved to comments near the equivalent section of Python code.
+* The opening comments of each game are taken nearly verbatim from the original descriptions in the books.
+* Comments within the code that came from the original listing are indicated with double quotes.
 * The games themselves have been kept as close to the original play experience as possible:
    * The text prompts and displays are pretty much exactly as they appeared in the books, with attention paid to original spacing, punctuation, and spelling (including mistakes).
    * The original books included example printouts of test runs of each game. In cases where the output shown was different from what the given code would've actually produced (a not uncommon occurrence!), editorial choices have been made about which version to port over.
-   * The output in the books used uppercase throughout, probably because many computers of that era lacked the capability to display anything else. These ports take the liberty of using both uppercase and lowercase. A library is provided that allows you to override this, if you're looking for maximum historic fidelity.
+   * The output in the books used uppercase throughout, probably because many computers of that era lacked the capability to display anything else. These ports take the liberty of using both uppercase and lowercase.
 * Program logic has also been kept fairly close to the originals, for better or for worse:
    * Since Python is a [structured language](https://en.wikipedia.org/wiki/Structured_programming) (in contrast to vintage BASIC's older, [unstructured paradigm](https://en.wikipedia.org/wiki/Non-structured_programming)), all the GOTOs have been replaced with while loops and if/else/then blocks.
-   * Functions have been broken out primarily to avoid code duplication only.
-   * Apart from tuples taking the place of BASIC arrays, Python data structures have been used sparingly.
-   * Object-oriented concepts are not heavily used.
    * Variable names have been changed from single letters to descriptive names. I'm not a monster.
    * Unless they were especially horrible, logical errors have been faithfully replicated! Discovering and fixing them is part of the fun, after all.
 * Porting notes and suggestions for modifications are found in the comments at the end of each code file. These are part of this project and did not appear in the original books.
 
 Share and enjoy!
 
-> **Note:** There is [another project on github](https://github.com/chaosotter/python-101-games) that's doing something similar, although with a few differences in porting philosophy. It looks really cool though, so you might want to check it out too!
+> **Note:** There is [another project on github](https://github.com/chaosotter/python-101-games) that's doing something similar, although it seems to take more liberties with the source material. It looks really cool though, so you might want to check it out too!
