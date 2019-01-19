@@ -5,21 +5,18 @@
 # From: BASIC Computer Games (1978)
 #       Edited by David Ahl
 #
-# This is a simulation of the Acey
-# Ducey card game. In the game, the
-# dealer (the computer) deals two cards
-# face up. You have an option to bet or
-# not to bet depending on whether or not
-# you feel the next card dealt will have
-# a value between the first two.
+# "This is a simulation of the Acey Ducey card game.
+#  In the game, the dealer (the computer) deals two
+#  cards face up. You have an option to bet or not to
+#  bet depending on whether or not you feel the next
+#  card dealt will have a value between the first two.
 #
-# Your initial money is set to $100. 
-# The game keeps going on until you
-# lose all your money or interrupt the
-# program.
+# "Your initial money is set to $100. The game keeps
+#  going on until you lose all your money or interrupt
+#  the program.
 #
-# The original BASIC program author was
-# Bill Palmby of Prairie View, Illinois.
+# "The original BASIC program author was Bill Palmby
+#  of Prairie View, Illinois."
 #
 # Python port by Jeff Jetton
 #
@@ -28,21 +25,21 @@
 
 import random
 
-# You may alter this statement if you want to start
-# with more or less than $100.
+# "You may alter [the following statement] if you want
+#  to start with more or less than $100."
 DEFAULT_BANKROLL = 100
 
 # functions
-def dealCardNum():
+def deal_card_num():
     return random.randint(0, 12)
 
-def getCardName(n):
+def get_card_name(n):
     cardNames = (" 2", " 3", " 4", " 5", " 6", \
                  " 7", " 8", " 9", " 10", "Jack", \
                  "Queen", "King", "Ace")
     return(cardNames[n])
 
-def displayBankroll(b):
+def display_bankroll(b):
     if bankroll > 0:
         print("You now have %s dollars\n"%b)
     
@@ -61,66 +58,66 @@ print("If you do not want to bet, input a 0")
 
 
 # Loop for series of multiple games
-keepPlaying = True
-while keepPlaying:
+keep_playing = True
+while keep_playing:
     
     # Initialize bankroll at start of each game
     bankroll = DEFAULT_BANKROLL
-    displayBankroll(bankroll)
+    display_bankroll(bankroll)
 
     # Loop for a single round. Repeat until out of money.
     while bankroll > 0:
 
         # Deal out dealer cards
         print("Here are your next two cards")
-        dealer1 = dealCardNum()
+        dealer1 = deal_card_num()
         # If the cards match, we re-deal 2nd card until they don't
         dealer2 = dealer1
         while dealer1 == dealer2:
-            dealer2 = dealCardNum()
+            dealer2 = deal_card_num()
         # Organize the cards in order if they're not already
         if (dealer1 >= dealer2):
             (dealer1, dealer2) = (dealer2, dealer1) # Ya gotta love Python!
         # Show dealer cards to the player
         # (use card name rather than internal number)
-        print(getCardName(dealer1))
-        print(getCardName(dealer2) + "\n")
+        print(get_card_name(dealer1))
+        print(get_card_name(dealer2) + "\n")
 
         # Get and handle player bet choice
-        betIsValid = False
-        while not betIsValid:
-            currBet = int(input("\nWhat is your bet? "))
-            if currBet == 0:
-                betIsValid = True
+        bet_is_valid = False
+        while not bet_is_valid:
+            curr_bet = int(input("\nWhat is your bet? "))
+            if curr_bet == 0:
+                bet_is_valid = True
                 print("Chicken!!\n")
-            elif currBet > bankroll:
+            elif curr_bet > bankroll:
                 print("Sorry, my friend but you bet too much")
-                print("You have only %s dollars to bet"%bankroll)
+                print("You have only %s dollars to bet" % bankroll)
             else:
                 # Deal player card
-                betIsValid = True
-                player = dealCardNum()
-                print(getCardName(player) + "\n")
+                bet_is_valid = True
+                player = deal_card_num()
+                print(get_card_name(player) + "\n")
     
                 # Did we win?
                 if player > dealer1 and player < dealer2:
                     print("You win!!!")
-                    bankroll += currBet
+                    bankroll += curr_bet
                 else:
                     print("Sorry, you lose")
-                    bankroll -= currBet
+                    bankroll -= curr_bet
 
                 # Update player on new bankroll level
-                displayBankroll(bankroll)
+                display_bankroll(bankroll)
             
     # End of loop for a single round
 
     print("\n\nSorry, friend but you blew your wad")
-    playerResponse = input("Try again (yes or no) ")
-    if playerResponse.lower() == "yes":
+    player_response = input("Try again (yes or no) ")
+    if player_response.lower() == "yes":
         print()
     else:
-        keepPlaying = False
+        keep_playing = False
 
 # End of multiple game loop
 
