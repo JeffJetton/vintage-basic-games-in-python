@@ -7,8 +7,8 @@
 #
 # "Not exactly a game, this program simulates rolling
 #  a pair of dice a large number of times and prints out
-#  the frequency distribution. You simply input the
-#  number of rolls. it is interesting to see how many
+#  the frequency distribution.  You simply input the
+#  number of rolls.  It is interesting to see how many
 #  rolls are necessary to approach the theoretical
 #  distribution:
 #
@@ -21,7 +21,7 @@
 #  seventh grade at Harrison Jr-Sr High School,
 #  Harrison, New York."
 #
-# Python port by Jeff Jetton
+# Python port by Jeff Jetton, 2019
 #
 ########################################################
 
@@ -66,7 +66,7 @@ while still_playing:
     # Keep playing?
     print("\n")
     response = input("Try again? ")
-    if response.upper()[0] == 'Y':
+    if len(response) > 0 and response.upper()[0] == 'Y':
         # Clear out the frequency list
         freq = [0]*13
     else:
@@ -80,7 +80,7 @@ while still_playing:
 #
 # Porting Notes
 #
-#   A fairly straightforward port. The only change is
+#   A fairly straightforward port.  The only change is
 #   in the handling of the user's "try again" response.
 #   The original program only continued if the user
 #   entered "YES", whereas this version will continue
@@ -89,7 +89,7 @@ while still_playing:
 #   The instruction text--which, like all these ports,
 #   was taken verbatim from the original listing--is
 #   charmingly quaint in its dire warning against
-#   setting the number of rolls too high. At the time
+#   setting the number of rolls too high.  At the time
 #   of this writing, on a fairly slow computer, a
 #   5000-roll run typically clocks in at well under
 #   1/10 of a second!
@@ -98,7 +98,7 @@ while still_playing:
 # Ideas for Modifications
 #
 #   Have the results include a third column showing
-#   the percent of rolls each count represents. Or
+#   the percent of rolls each count represents.  Or
 #   (better yet) print a low-fi bar graph using
 #   rows of asterisks to represent relative values,
 #   with each asterisk representing one percent,
