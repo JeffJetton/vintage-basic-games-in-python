@@ -7,25 +7,25 @@
 #
 # "Did you ever go to a computer show and see a bunch of
 #  CRT terminals just sitting there waiting forlornly
-#  for someone to give a demo on them. It was one of
+#  for someone to give a demo on them.  It was one of
 #  those moments when I was at DEC that I decided there
-#  should be a little bit of background activity. And
+#  should be a little bit of background activity.  And
 #  why not plot with words instead of the usual X's?
 #  Thus SINE WAVE was born and lives on in dozens of
-#  different versions. At least those CRTs don't look
+#  different versions.  At least those CRTs don't look
 #  so lifeless anymore."
 #
 # Original BASIC version by David Ahl
 #
-# Python port by Jeff Jetton
+# Python port by Jeff Jetton, 2019
 #
 ########################################################
 
 import math, time
 
 # Constants
-STRINGS = ('Creative', 'Computing')    # Text to display
-MAX_LINES = 160  # How many total lines?
+STRINGS = ('Creative', 'Computing') # Text to display
+MAX_LINES = 160
 STEP_SIZE = 0.25 # Number of radians to increase at each
                  # line. Controls speed of horizontal
                  # printing movement.
@@ -53,8 +53,6 @@ for line_num in range(MAX_LINES):
     # Calculate how far over to print the text
     sine = math.sin(radians)
     padding = int(CENTER + width * sine)
-
-    # Print with appropriate positioning
     print(curr_string.rjust(padding + len(curr_string)))
 
     # Increase radians and increment our tuple index
@@ -63,7 +61,7 @@ for line_num in range(MAX_LINES):
     if string_index >= len(STRINGS):
         string_index = 0
 
-    # Add a bit of delay
+    # Make sure the text doesn't fly by too fast...
     time.sleep(DELAY)
 
 
@@ -79,7 +77,7 @@ for line_num in range(MAX_LINES):
 #
 #   Here, the words have been moved to a Python tuple,
 #   which is iterated over without any assumptions about
-#   how long it is. The STRINGS tuple can therefore be
+#   how long it is.  The STRINGS tuple can therefore be
 #   modified to have to program print out any sequence
 #   of any number of lines of text.
 #
