@@ -10,7 +10,7 @@
 # https://www.atariarchives.org/bcc1/showpage.php?page=247   and
 # https://www.atariarchives.org/morebasicgames/showpage.php?page=178
 #
-# Original BASIC program by Gregory Yob, circa 1973
+# Original BASIC program by Gregory Yob, 1973
 #
 # Python port by Jeff Jetton, 2019
 #
@@ -417,7 +417,7 @@ while still_playing:
 #   official sequels to Wumpus that actually did that.)
 #
 #   The current method for specifying moves and arrow
-#   shows is just as it was in the original BASIC
+#   shots is just as it was in the original BASIC
 #   program--but it's a little clunky.  Try changing the
 #   game so that the player just has to type one line
 #   for each turn. For example, to move to room five:
