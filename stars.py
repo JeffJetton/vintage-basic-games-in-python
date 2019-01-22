@@ -1,30 +1,26 @@
-########################################################
+######################################################################
 #
 # Stars
 #
 # From: BASIC Computer Games (1978)
 #       Edited by David H. Ahl
 #
-# "In this game, the computer selects a random number
-#  from 1 to 100 (or any value you set [for MAX_NUM]).
-#  You try to guess the number and the computer gives
-#  you clues to tell you how close you're getting.
-#  One star (*) means you're far away from the number;
-#  seven stars (*******) means you're really close.
-#  You get 7 guesses.
+# "In this game, the computer selects a random number from 1 to 100
+#  (or any value you set [for MAX_NUM]).  You try to guess the number
+#  and the computer gives you clues to tell you how close you're
+#  getting.  One star (*) means you're far away from the number; seven
+#  stars (*******) means you're really close.  You get 7  guesses.
 #
-# "On the surface this game is very similar to GUESS;
-#  however, the guessing strategy is quite different.
-#  See if you can come up with one or more approaches
-#  to finding the mystery number.
+# "On the surface this game is very similar to GUESS; however, the
+#  guessing strategy is quite different.  See if you can come up with
+#  one or more approaches to finding the mystery number.
 #
-# "Bob Albrecht of People's Computer Company created
-#  this game."
+# "Bob Albrecht of People's Computer Company created this game."
 #
 #
-# Python port by Jeff Jetton
+# Python port by Jeff Jetton, 2019
 #
-########################################################
+######################################################################
 
 
 import random
@@ -46,20 +42,10 @@ def print_instructions():
 
 def print_stars(secret_number, guess):
     diff = abs(guess - secret_number)
-    if diff >= 64:
-        stars = "*"
-    elif diff >= 32:
-        stars = "**"
-    elif diff >= 16:
-        stars = "***"
-    elif diff >= 8:
-        stars = "****"
-    elif diff >= 4:
-        stars = "*****"
-    elif diff >= 2:
-        stars = "******"
-    else:
-        stars = "*******"
+    stars = ""
+    for i in range(8):
+        if diff < 2**i:
+            stars += "*"
     print(stars)
     
 
@@ -113,31 +99,28 @@ while still_playing:
 
     
 
-
-
-########################################################
+######################################################################
 #
 # Porting Notes
 #
-#   The original program never exited--it just kept
-#   playing rounds over and over. This version asks
-#   the player to continue each time.
+#   The original program never exited--it just kept playing rounds
+#   over and over.  This version asks to continue each time.
 #
 #
 # Ideas for Modifications
 #
-#   Let the player know how many guesses they have
-#   remaining after each incorrect guess.
+#   Let the player know how many guesses they have remaining after
+#   each incorrect guess.
 #
-#   Ask the player to select a skill level at the start
-#   of the program, which will affect the values of
-#   MAX_NUM and MAX_GUESSES. For example:
+#   Ask the player to select a skill level at the start of the game,
+#   which will affect the values of MAX_NUM and MAX_GUESSES.
+#   For example:
 #
 #       Easy   = 8 guesses, 1 to 50
 #       Medium = 7 guesses, 1 to 100
 #       Hard   = 6 guesses, 1 to 200
 #
-########################################################
+######################################################################
 
 
             
