@@ -48,7 +48,7 @@ def display_bankroll(b):
 # Display initial title and instructions
 print("\n           Acey Ducey Card Game")
 print("Creative Computing  Morristown, New Jersey")
-print("\n\n\n")
+print("\n\n")
 print("Acey-Ducey is played in the following manner")
 print("The dealer (computer) deals two cards face up")
 print("You have an option to bet or not bet depending")
@@ -86,29 +86,31 @@ while keep_playing:
         # Get and handle player bet choice
         bet_is_valid = False
         while not bet_is_valid:
-            curr_bet = int(input("\nWhat is your bet? "))
-            if curr_bet == 0:
-                bet_is_valid = True
-                print("Chicken!!\n")
-            elif curr_bet > bankroll:
-                print("Sorry, my friend but you bet too much")
-                print("You have only %s dollars to bet" % bankroll)
-            else:
-                # Deal player card
-                bet_is_valid = True
-                player = deal_card_num()
-                print(get_card_name(player) + "\n")
-    
-                # Did we win?
-                if player > dealer1 and player < dealer2:
-                    print("You win!!!")
-                    bankroll += curr_bet
+            curr_bet = input("What is your bet? ")
+            if curr_bet.isdigit():
+                curr_bet = int(curr_bet)
+                if curr_bet == 0:
+                    bet_is_valid = True
+                    print("Chicken!!\n")
+                elif curr_bet > bankroll:
+                    print("Sorry, my friend but you bet too much")
+                    print("You have only %s dollars to bet\n" % bankroll)
                 else:
-                    print("Sorry, you lose")
-                    bankroll -= curr_bet
+                    # Deal player card
+                    bet_is_valid = True
+                    player = deal_card_num()
+                    print(get_card_name(player))
+        
+                    # Did we win?
+                    if player > dealer1 and player < dealer2:
+                        print("You win!!!")
+                        bankroll += curr_bet
+                    else:
+                        print("Sorry, you lose")
+                        bankroll -= curr_bet
 
-                # Update player on new bankroll level
-                display_bankroll(bankroll)
+                    # Update player on new bankroll level
+                    display_bankroll(bankroll)
             
     # End of loop for a single round
 
@@ -160,11 +162,7 @@ print("OK Hope you had fun\n")
 #   out entirely.
 #
 #   See "porting notes" above about negative bet values.
-#   In fact, other than checking to make sure the player
-#   has enough in the bankroll, there is no validation
-#   of bet input.  Try entering a word instead of a
-#   number, for example.  What happens?  How would you
-#   fix these problems?
+#   How would you fix this?
 #
 #   When the player "chickens out", show them what the
 #   next card would've been and point out whether they
