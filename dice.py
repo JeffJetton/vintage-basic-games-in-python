@@ -38,7 +38,7 @@ freq = [0] * 13
 # Display intro text
 print("\n                   Dice")
 print("Creative Computing  Morristown, New Jersey")
-print("\n\n\n")
+print("\n\n")
 # "Danny Freidus"
 print("This program simulates the rolling of a")
 print("pair of dice.")
@@ -48,7 +48,7 @@ print("a long time.  In particular, numbers over 5000.")
 
 still_playing = True
 while still_playing:
-    print("\n")
+    print("")
     n = int(input("How many rolls? "))
 
     # Roll the dice n times
@@ -64,7 +64,7 @@ while still_playing:
         print(" %-14d%d" % (i, freq[i]))
 
     # Keep playing?
-    print("\n")
+    print("")
     response = input("Try again? ")
     if len(response) > 0 and response.upper()[0] == 'Y':
         # Clear out the frequency list
