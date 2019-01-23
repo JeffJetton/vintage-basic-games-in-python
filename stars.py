@@ -47,12 +47,23 @@ def print_stars(secret_number, guess):
         if diff < 2**i:
             stars += "*"
     print(stars)
+
+
+def get_guess():
+    valid_response = False
+    while not valid_response:
+        guess = input("Your guess? ")
+        if guess.isdigit():
+            valid_response = True
+            guess = int(guess)
+    return(guess)
     
+
 
 # Display intro text
 print("\n                   Stars")
 print("Creative Computing  Morristown, New Jersey")
-print("\n\n\n")
+print("\n\n")
 # "*** Stars - People's Computer Center, MenloPark, CA"
 
 response = input("Do you want instructions? ")
@@ -71,8 +82,8 @@ while still_playing:
     player_has_won = False
     while (guess_number < MAX_GUESSES) and not player_has_won:
 
-         print("\n")
-         guess = int(input("Your guess? "))
+         print("")
+         guess = get_guess()
          guess_number += 1
 
          if guess == secret_number:
