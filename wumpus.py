@@ -61,38 +61,36 @@ class GameState:
     Track locations of all game items (including player), as
     well as status of player and wumpus
     """
-    player_room = 0
-    wumpus_room = 0
-    bat_rooms = [0] * NUM_BATS
-    pit_rooms = [0] * NUM_PITS
-    arrows_remaining = STARTING_ARROWS
-    winner = WINNER_NOBODY
-
     def __init__(self, source = None):
         if source is None:
+            self.winner = WINNER_NOBODY
+            self.arrows_remaining = STARTING_ARROWS
             # Randomly assign unique locations to each game item
             random_rooms = [i+1 for i in range(NUM_ROOMS)]
             random.shuffle(random_rooms)
             self.player_room = random_rooms[0]
             self.wumpus_room = random_rooms[1]
+            self.bat_rooms = [0]*NUM_BATS
             for i in range(NUM_BATS):
                 self.bat_rooms[i] = random_rooms[i + 2]
+            self.pit_rooms = [0]*NUM_PITS
             for i in range(NUM_PITS):
                 self.pit_rooms[i] = random_rooms[i + 2 + NUM_BATS]
         else:
             # If source is passed, make this object a copy
+            self.winner = source.winner
+            self.arrows_remaining = source.arrows_remaining
             self.player_room = source.player_room
             self.wumpus_room = source.wumpus_room
             self.bat_rooms = source.bat_rooms.copy()
             self.pit_rooms = source.pit_rooms.copy()
-            self.arrows_remaining = source.arrows_remaining
-            self.winner = source.winner
+           
             
     def __str__(self):
         s = format("Player Room: %-2d     " % self.player_room)
         s += format("Wumpus Room: %-2d" % self.wumpus_room)
         s += format("\nArrows: %-2d          " % self.arrows_remaining)
-        s += "Winner: " + WINNER_TEXT[g.winner] + "\n"
+        s += "Winner: " + WINNER_TEXT[self.winner] + "\n"
         s += "Bat Rooms: " + str(self.bat_rooms) + "\n"
         s += "Pit Rooms: " + str(self.pit_rooms)
         return s
