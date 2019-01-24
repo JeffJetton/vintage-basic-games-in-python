@@ -87,8 +87,12 @@ while keep_playing:
         bet_is_valid = False
         while not bet_is_valid:
             curr_bet = input("What is your bet? ")
-            if curr_bet.isdigit():
+            try:
                 curr_bet = int(curr_bet)
+            except:
+                # Bad input? Just loop back up and ask again...
+                pass
+            else:
                 if curr_bet == 0:
                     bet_is_valid = True
                     print("Chicken!!\n")
@@ -142,9 +146,11 @@ print("OK Hope you had fun\n")
 #   being drawn.  This "infinite deck" logic (or "deal,
 #   with replacement after") has NOT been changed.
 #
-#   Like the original program, we still allow entering
-#   negative bet values, which will earn the player
-#   money if they lose! :-)
+#   In the interests of historical fidelity, the bug
+#   in the original BASIC listing that let you input a
+#   negative bet value has been faithfully reproduced.
+#   This lets the player lose money when they win and
+#   earn money when they lose! :-)
 #
 #
 # Ideas for Modifications
