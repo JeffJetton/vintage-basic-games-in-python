@@ -309,7 +309,7 @@ def get_replay_choice():
 # Intro text and instructions
 print("\n                  Wumpus")
 print("Creative Computing  Morristown, New Jersey")
-print("\n\n\n")
+print("\n\n")
 response = input("Instructions (Y-N)? ")
 if len(response) > 0 and response.strip().upper()[0] != "N":
     print_instructions()
@@ -328,7 +328,7 @@ while still_playing:
         saved_state = GameState(g)
         
     # "Run the game" until we have a winner
-    print("\nHunt the Wumpus\n")
+    print("\nHunt the Wumpus")
     while g.winner == WINNER_NOBODY:
         
         # "Hazard warnings & locations"
