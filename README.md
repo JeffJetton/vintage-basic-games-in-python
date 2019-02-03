@@ -1,12 +1,12 @@
 # Vintage BASIC Games in Python
 
-This is an in-progress collection of simple, text-based Python games, ported mostly from [David H. Ahl's](https://www.swapmeetdave.com/Ahl/DHA.htm) two hugely popular collections of type-in BASIC program listings:
-* [BASIC Computer Games](http://www.vintage-basic.net/games.html) (1973)
+This is an in-progress collection of simple, text-based Python games, ported mostly from [David H. Ahl's](https://www.swapmeetdave.com/Ahl/DHA.htm) two hugely popular compilations of type-in BASIC program listings:
+* [BASIC Computer Games](http://www.vintage-basic.net/games.html) (1978)
 * [More BASIC Computer Games](https://www.atariarchives.org/morebasicgames/) (1979)
 
 [These sorts of programs](https://en.wikipedia.org/wiki/Early_mainframe_games "Wikipedia article on early mainframe games") influenced an entire generation of budding programmers back in the day, myself included. It is hoped that beginning Python coders will derive the same benefits from playing, exploring, and (most importantly) *modifying* these games as we did with the original BASIC versions.
 
-The games here are truly "old school" and run as they would've originally: Right on on the command line (or in a Python IDE) using written output and typed-in input.
+The games here are truly "old school" and run as they would've originally: Right on on the command line (or in a Python IDE) using text output and typed-in input.
 
 
 ### Porting Notes
