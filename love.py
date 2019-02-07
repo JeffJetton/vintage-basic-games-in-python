@@ -115,7 +115,7 @@ print("")
 #   Other changes include reducing some of the vertical spacing
 #   (since we'll probably be showing this on a screen rather than
 #   the sort of tractor-feed printer the program was written for)
-#   and having the messaage default to LOVE when no input is giving.
+#   and having the message default to LOVE when no input is given.
 #
 #   This program uses a simple version of run-length encoding to
 #   compress a 60 x 36 image (2,160 characters) into just 252 DATA
